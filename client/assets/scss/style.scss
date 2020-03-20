@@ -96,14 +96,18 @@ html {
 
 html, body {
   height: 100%;
+  line-height: 1.7;
 }
 
 ul,ol{
   list-style: none;
-
 }
 ul,ol,dl,dt,dd{
   margin: 0;
   padding: 0;
   font-weight: normal;
+}
+
+.btn{
+  font-weight: bold;
 }

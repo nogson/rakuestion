@@ -1,12 +1,18 @@
-$green: #16C6C0;
+$green: #56b760;
 $primary: $green;
+$secondary: #fa4748;
+$yellow: #fffdab;
+$color-gray1: #ededed;
+$color-gray2: #bcbcbc;
 $negative: #c63134;
 $color-border: hsl(0, 0%, 89%);
+$avatar-size: 50px;
 
-$size-s:8px;
-$size-m:16px;
-$size-l:24px;
-$size-xl:32px;
+$size-xs: 4px;
+$size-s: 8px;
+$size-m: 16px;
+$size-l: 24px;
+$size-xl: 32px;
 
 
 @import '~bootstrap/scss/bootstrap';
