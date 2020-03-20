@@ -15,6 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  srcDir: 'client',
   /*
   ** Customize the progress-bar color
   */
@@ -23,11 +24,14 @@ export default {
   ** Global CSS
   */
   css: [
+    // プロジェクト内の SASS ファイル
+    {src: '@/assets/scss/style.scss', lang: 'scss'}
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {src: "@/plugins/axios"}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,7 +43,11 @@ export default {
   */
   modules: [
     // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt',
+    ['bootstrap-vue/nuxt',{ css: false }],
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
+    ['cookie-universal-nuxt', { parseJSON: false }],
+    'nuxt-fontawesome'
   ],
   /*
   ** Build configuration
@@ -50,5 +58,27 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  axios: {
+    baseURL: "http://localhost",
+    credentials: true
+  },
+  styleResources: {
+    scss: [
+      '~/assets/scss/index.scss',
+      '~/assets/scss/util.scss'
+    ]
+  },
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },
+      {
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['fab']
+      }
+    ]
   }
 }

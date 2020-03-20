@@ -1,0 +1,11 @@
+.l_flex{
+  display: flex;
+  align-items: center;
+  >*:not(:last-child){
+    margin-right:$size-m;
+  }
+}
+
+.margin_r_s{
+  margin-right: $size-s;
+}

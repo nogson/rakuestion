@@ -10,3 +10,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
