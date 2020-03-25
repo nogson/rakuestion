@@ -26,10 +26,17 @@
         questions: []
       }
     },
-    async asyncData({$axios}) {
-      const data = await $axios.$get('api/questions')
+    async asyncData({$axios,query}) {
+       const data = await $axios.$get('api/questions/search', {params:{keyword: query.keyword}})
       return {questions: data.data.questions}
     },
+    watch: {
+      '$route' (to) {
+        this.$axios.$get('api/questions/search', {params:{keyword: to.query.keyword}}).then(res => {
+          this.questions = res.data.questions
+        })
+      }
+    }
   }
 </script>
 

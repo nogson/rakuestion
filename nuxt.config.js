@@ -46,7 +46,8 @@ export default {
     ['bootstrap-vue/nuxt', {css: false}],
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    ['cookie-universal-nuxt', {parseJSON: false}]
+    ['cookie-universal-nuxt', {parseJSON: false}],
+    ['@nuxtjs/moment', ['ja']]
     // 'nuxt-fontawesome'
   ],
   /*
@@ -60,8 +61,7 @@ export default {
     }
   },
   axios: {
-    baseURL: "http://localhost",
-    credentials: true
+    baseURL: "http://localhost"
   },
   styleResources: {
     scss: [

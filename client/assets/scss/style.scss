@@ -35,8 +35,8 @@ h6 {
   font-size: .67rem
 }
 
-h1 {
-  margin: .67em 0
+h1,h2,h3,h4,h5 {
+  margin: 0
 }
 
 pre {
@@ -110,4 +110,5 @@ ul,ol,dl,dt,dd{
 
 .btn{
   font-weight: bold;
+  min-width: 100px;
 }
