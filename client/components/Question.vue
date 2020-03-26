@@ -6,7 +6,7 @@
         <div class="question_desc" v-html="data.question">
         </div>
         <div class="margin_b_s">
-          <span class="tag" v-for="(tag,index) in data.tags" :key="index">{{tag}}</span>
+          <span class="tag" @click="showSameTagQuestion(tag)" v-for="(tag,index) in data.tags" :key="index">{{tag}}</span>
         </div>
         <ul class="question_state">
           <li>{{date}}</li>
@@ -51,6 +51,11 @@
     computed:{
       date(){
         return this.$moment(this.data.updated_at).format('YYYY/MM/DD HH:mm:ss')
+      }
+    },
+    methods:{
+      showSameTagQuestion(tag) {
+        this.$router.push({path:'/search',query:{tag:tag}})
       }
     }
   }
@@ -126,6 +131,7 @@
       font-size: 12px;
       color: #FFF;
       margin-right: $size-xs;
+      cursor: pointer;
 
       &:before {
         content: '#';

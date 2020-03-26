@@ -61,7 +61,11 @@
     },
     methods: {
       onSubmit() {
-        this.$axios.$post('api/question/create', this.form).then(() => {
+
+        let params = Object.assign({},this.form)
+        params.question = params.question.replace(/\r?\n/g, '<br>')
+
+        this.$axios.$post('api/question/create', params).then(() => {
           this.$router.push('/')
         })
       }

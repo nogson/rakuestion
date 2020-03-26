@@ -11,8 +11,9 @@ class QuestionController extends Controller
 
     public function index(Request $request, Response $response)
     {
-        $questions = Question::orderBy('updated_at', 'desc')->get();
-       // $questions = $questions->latest()->get();
+        $questions = Question::orderBy('updated_at', 'desc')->paginate(3);
+        $max_count = Question::orderBy('updated_at', 'desc')->count();
+        // $questions = $questions->latest()->get();
 
         foreach ($questions as $value) {
             if (isset($value->tags)) {
@@ -22,7 +23,7 @@ class QuestionController extends Controller
             $value->answers = $value->answers;
         }
 
-        return ['data' => ['questions' => $questions]];
+        return ['data' => ['questions' => $questions, 'max_count' => $max_count]];
     }
 
     public function show(Request $request, Response $response, $id)
@@ -55,8 +56,8 @@ class QuestionController extends Controller
     public function search(Request $request, Response $response)
     {
         $keyword = $request->input('keyword');
-        $questions = Question::where('question','like','%'.$keyword.'%')
-            ->orWhere('tags', 'like','%'.$keyword.'%')->get();
+        $questions = Question::where('question', 'like', '%' . $keyword . '%')
+            ->orWhere('tags', 'like', '%' . $keyword . '%')->get();
 
         foreach ($questions as $value) {
             if (isset($value->tags)) {
@@ -67,6 +68,31 @@ class QuestionController extends Controller
         }
 
 
-       return ['data' =>['questions' =>$questions]];
+        return ['data' => ['questions' => $questions, 'keyword' => $keyword]];
+    }
+
+    public function sameTag(Request $request, Response $response)
+    {
+        $questions = array();
+
+        $tag = $request->input('tag');
+
+        $tags = explode(',', $tag);
+
+        foreach ($tags as $value) {
+            $q = Question::where('tags', '=', $value)->get();
+
+            foreach ($q as $qValue) {
+                if (isset($qValue->tags)) {
+                    $value->tags = explode(',', $value->tags);
+                }
+                $qValue->answers = $qValue->answers;
+            }
+
+            $questions = array_merge($questions, $q->toArray());
+        }
+
+
+        return ['data' => ['questions' => $questions, 'tags' => $tags]];
     }
 }

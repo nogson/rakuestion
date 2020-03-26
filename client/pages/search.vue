@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1 v-if="keyword" class="ttl_1">検索条件　{{keyword}}</h1>
+    <h1 v-else-if="tags" class="ttl_1">検索条件　<span v-for="(tag,index) in tags" :index="index">#{{tag}}</span></h1>
     <article v-for="question in questions" :index="question.id">
       <question :useLinkBtn="true" :data="question" :answer-count="question.answers.length"/>
       <div class="avatars">
@@ -23,16 +25,24 @@
     },
     data() {
       return {
-        questions: []
+        questions: [],
+        keyword: null,
+        tags:null
       }
     },
-    async asyncData({$axios,query}) {
-       const data = await $axios.$get('api/questions/search', {params:{keyword: query.keyword}})
-      return {questions: data.data.questions}
+    async asyncData({$axios, query}) {
+      if(query.keyword){
+        const res = await $axios.$get('api/questions/search', {params: {keyword: query.keyword}})
+        return {questions: res.data.questions, keyword: res.data.keyword}
+      }else if(query.tag){
+        const res = await $axios.$get('api/questions/same_tag', {params: {tag: query.tag}})
+        return {questions: res.data.questions, tags: res.data.tags}
+      }
+
     },
     watch: {
-      '$route' (to) {
-        this.$axios.$get('api/questions/search', {params:{keyword: to.query.keyword}}).then(res => {
+      '$route'(to) {
+        this.$axios.$get('api/questions/search', {params: {keyword: to.query.keyword}}).then(res => {
           this.questions = res.data.questions
         })
       }

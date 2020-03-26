@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/questions', 'QuestionController@index');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/questions/search', 'QuestionController@search');
+Route::get('/questions/same_tag', 'QuestionController@sameTag');
 Route::post('/question/create', 'QuestionController@create');
 Route::get('/question/{id}/answers', 'AnswerController@index');
 Route::post('/answer/{id}/create', 'AnswerController@create');
