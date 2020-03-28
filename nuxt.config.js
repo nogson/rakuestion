@@ -61,7 +61,7 @@ export default {
     }
   },
   generate: {
-    dir: 'public'
+    dir: 'public/dist'
   },
   axios: {
     baseURL: "https://raquestion.herokuapp.com"
