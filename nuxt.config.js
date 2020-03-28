@@ -61,7 +61,7 @@ export default {
     }
   },
   generate: {
-    dir: 'public/dist'
+    dir: 'public'
   },
   axios: {
     baseURL: "http://localhost"
