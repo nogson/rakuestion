@@ -28,7 +28,7 @@
           <b-icon icon="chevron-left" class="h5 icon margin_r_xs margin_b_zero"/>
           戻る
         </b-button>
-        <b-button type="submit" class="margin_l_auto" variant="primary">確認
+        <b-button type="submit" class="margin_l_auto" variant="primary" :disabled="disabledSubmitBtn">確認
           <b-icon icon="chevron-right" class="h5 icon margin_l_xs margin_b_zero"/>
         </b-button>
       </div>
@@ -57,6 +57,9 @@
           tags: this.form.tags,
           avatar: this.form.avatar
         }
+      },
+      disabledSubmitBtn() {
+        return !this.form.question || this.form.question === ''
       }
     },
     methods: {

@@ -9,11 +9,15 @@ use Illuminate\Http\Response;
 class QuestionController extends Controller
 {
 
+    private $limit = 20;
+
     public function index(Request $request, Response $response)
     {
-        $questions = Question::orderBy('updated_at', 'desc')->paginate(3);
+        $offset = $request->input('offset');
+        $limit = $request->input('limit');
+
+        $questions = Question::orderBy('updated_at', 'desc')->offset($offset)->limit($limit)->get();
         $max_count = Question::orderBy('updated_at', 'desc')->count();
-        // $questions = $questions->latest()->get();
 
         foreach ($questions as $value) {
             if (isset($value->tags)) {
@@ -23,7 +27,7 @@ class QuestionController extends Controller
             $value->answers = $value->answers;
         }
 
-        return ['data' => ['questions' => $questions, 'max_count' => $max_count]];
+        return ['data' => ['questions' => $questions, 'max_count' => $max_count, 'req' => $request]];
     }
 
     public function show(Request $request, Response $response, $id)
@@ -56,8 +60,12 @@ class QuestionController extends Controller
     public function search(Request $request, Response $response)
     {
         $keyword = $request->input('keyword');
+        $offset = $request->input('offset');
+        $limit = $request->input('limit');
+
         $questions = Question::where('question', 'like', '%' . $keyword . '%')
-            ->orWhere('tags', 'like', '%' . $keyword . '%')->get();
+            ->orWhere('tags', 'like', '%' . $keyword . '%')->offset($offset)->limit($limit)->get();
+        $max_count = Question::orderBy('updated_at', 'desc')->count();
 
         foreach ($questions as $value) {
             if (isset($value->tags)) {
@@ -68,7 +76,7 @@ class QuestionController extends Controller
         }
 
 
-        return ['data' => ['questions' => $questions, 'keyword' => $keyword]];
+        return ['data' => ['questions' => $questions, 'max_count' => $max_count, 'keyword' => $keyword]];
     }
 
     public function sameTag(Request $request, Response $response)
@@ -80,7 +88,7 @@ class QuestionController extends Controller
         $tags = explode(',', $tag);
 
         foreach ($tags as $value) {
-            $q = Question::where('tags', '=', $value)->get();
+            $q = Question::where('tags', '=', $value)->paginate($this->limit);
 
             foreach ($q as $qValue) {
                 if (isset($qValue->tags)) {
