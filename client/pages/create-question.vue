@@ -28,11 +28,13 @@
           <b-icon icon="chevron-left" class="h5 icon margin_r_xs margin_b_zero"/>
           戻る
         </b-button>
-        <b-button type="submit" class="margin_l_auto" variant="primary" :disabled="disabledSubmitBtn">確認
-          <b-icon icon="chevron-right" class="h5 icon margin_l_xs margin_b_zero"/>
+        <b-button v-b-modal.confirmModal type="submit" class="margin_l_auto" variant="primary"
+                  :disabled="disabledSubmitBtn">登録
         </b-button>
       </div>
     </b-form>
+    <div>
+    </div>
   </section>
 </template>
 
@@ -64,8 +66,14 @@
     },
     methods: {
       onSubmit() {
-
-        let params = Object.assign({},this.form)
+        this.$bvModal.msgBoxConfirm('質問を登録しますか？').then(res => {
+          if (res) {
+            this.create()
+          }
+        })
+      },
+      create() {
+        let params = Object.assign({}, this.form)
         params.question = params.question.replace(/\r?\n/g, '<br>')
 
         this.$axios.$post('api/question/create', params).then(() => {
