@@ -64,7 +64,7 @@ export default {
     dir: 'public'
   },
   axios: {
-    baseURL: "https://raquestion.herokuapp.com/"
+    baseURL: "https://raquestion.herokuapp.com"
   },
   styleResources: {
     scss: [
