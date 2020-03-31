@@ -1,3 +1,11 @@
+let env = process.env.NODE_ENV || 'development';
+if (env === 'development' || env === 'test') {
+  let API_URL='http://localhost'
+}
+else{
+  let API_URL=process.env.API_URL
+}
+
 export default {
   mode: 'universal',
   /*
@@ -64,7 +72,7 @@ export default {
     dir: 'public/dist'
   },
   axios: {
-    baseURL: "https://raquestion.herokuapp.com"
+    baseURL:API_URL
   },
   styleResources: {
     scss: [
@@ -75,16 +83,4 @@ export default {
   bootstrapVue: {
     icons: true // Install the IconsPlugin (in addition to BootStrapVue plugin
   }
-  // fontawesome: {
-  //   imports: [
-  //     {
-  //       set: '@fortawesome/free-solid-svg-icons',
-  //       icons: ['fas']
-  //     },
-  //     {
-  //       set: '@fortawesome/free-brands-svg-icons',
-  //       icons: ['fab']
-  //     }
-  //   ]
-  // }
 }
