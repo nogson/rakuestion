@@ -1,5 +1,5 @@
-let env = process.env.NODE_ENV || 'development';
-const API_URL = env === 'production' ? process.env.API_URL : 'http://localhost\''
+const env = process.env.NODE_ENV || 'development';
+const API_URL = env === 'production' ? process.env.API_URL : 'http://localhost'
 
 
 export default {
