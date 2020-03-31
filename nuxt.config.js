@@ -1,5 +1,5 @@
 const env = process.env.NODE_ENV || 'development';
-const API_URL = env === 'production' ? 'http://raquestion.herokuapp.com' : 'http://localhost'
+const API_URL = env === 'production' ? 'http://raquestion.herokuapp.com/' : 'http://localhost'
 
 export default {
   mode: 'universal',
@@ -67,7 +67,7 @@ export default {
     dir: 'public/dist'
   },
   axios: {
-    baseURL: 'http://localhost'
+    baseURL: API_URL
   },
   styleResources: {
     scss: [
