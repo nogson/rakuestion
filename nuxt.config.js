@@ -1,10 +1,6 @@
 let env = process.env.NODE_ENV || 'development';
-if (env === 'development' || env === 'test') {
-  let API_URL='http://localhost'
-}
-else{
-  let API_URL=process.env.API_URL
-}
+const API_URL = env === 'production' ? process.env.API_URL : 'http://localhost\''
+
 
 export default {
   mode: 'universal',
@@ -72,7 +68,7 @@ export default {
     dir: 'public/dist'
   },
   axios: {
-    baseURL:API_URL
+    baseURL: API_URL
   },
   styleResources: {
     scss: [
