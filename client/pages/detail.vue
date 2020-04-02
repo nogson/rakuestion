@@ -40,8 +40,8 @@
 </template>
 
 <script>
-  import Answer from "../../components/Answer";
-  import Question from "../../components/Question";
+  import Answer from "../components/Answer";
+  import Question from "../components/Question";
 
   export default {
     layout: 'base-no-question-btn',
@@ -49,26 +49,34 @@
     data() {
       return {
         form: {
-          question_id: this.$route.params.id,
-          avatar: Math.floor(Math.random() * 5 + 1)
+          question_id: this.$route.query.id,
+          avatar: Math.floor(Math.random() * 33 + 1)
         },
         answers: [],
         question: {},
         closed:false
       }
     },
-    async asyncData({params, $axios}) {
-      const answers = await $axios.$get(`api/question/${params.id}/answers`)
-      const question = await $axios.$get(`api/question/${params.id}`)
+    // async asyncData({route, $axios}) {
+    //   const answers = await $axios.$get(`/api/question/${route.query.id}/answers`)
+    //   const question = await $axios.$get(`/api/question/${route.query.id}`)
+    //
+    //   return {
+    //     answers: answers.data.answers,
+    //     question: question.data.question
+    //   }
+    // },
+    async created(){
+      const answers = await this.$axios.$get(`/api/question/${this.$route.query.id}/answers`)
+      const question = await this.$axios.$get(`/api/question/${this.$route.query.id}`)
 
-      return {
-        answers: answers.data.answers,
-        question: question.data.question
-      }
+      this.answers = answers.data.answers
+      this.question = question.data.question
+
     },
     methods: {
       onSubmit() {
-        this.$axios.$post(`api/answer/${this.$route.params.id}/create`, this.form).then((res) => {
+        this.$axios.$post(`/api/answer/${this.$route.query.id}/create`, this.form).then((res) => {
           this.form.answer = ''
           this.answers = res.data.answers
         })

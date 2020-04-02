@@ -48,7 +48,7 @@
     data() {
       return {
         form: {
-          avatar: Math.floor(Math.random() * 5 + 1)
+          avatar: Math.floor(Math.random() * 33 + 1)
         }
       }
     },

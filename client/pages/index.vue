@@ -38,7 +38,7 @@
       }
     },
     async asyncData({$axios}) {
-      const res = await $axios.$get('/api/questions', {params: {offset: 0, limit: 5}})
+      const res = await $axios.$get('api/questions', {params: {offset: 0, limit: 5}})
       return {questions: res.data.questions, maxCount: res.data.max_count}
     },
     methods: {

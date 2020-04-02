@@ -76,6 +76,7 @@
 
   .answer {
     position: relative;
+    margin-bottom: $size-l;
 
     .answer_desc {
       font-size: 14px;

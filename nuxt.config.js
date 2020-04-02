@@ -1,5 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
 const API_URL = env === 'production' ? 'https://raquestion.herokuapp.com' : 'http://localhost'
+console.log('-----------',API_URL)
+
 
 export default {
   mode: 'universal',
