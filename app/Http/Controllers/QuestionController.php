@@ -94,7 +94,7 @@ class QuestionController extends Controller
                 if (isset($qValue->tags)) {
                     $qValue->tags = explode(',', $qValue->tags);
                 }
-                $qValue->answers = $qValue->answers;
+                $qValue->answers = isset($qValue->answers) ? $qValue->answers : [];
             }
 
             $questions = array_merge($questions, $q->toArray());
