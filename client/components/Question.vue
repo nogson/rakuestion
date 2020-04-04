@@ -17,7 +17,7 @@
             <span>{{answerCount}}</span>
           </li>
           <li v-if="useLinkBtn" class="answer_btn margin_l_auto">
-            <b-button :to="`/detail/?id=${data.id}`" variant="outline-light" size="sm">
+            <b-button :to="`/detail?id=${data.id}`" variant="outline-light" size="sm">
               <span class="margin_l_m">見る</span>
               <b-icon icon="chevron-right" class="h5 icon margin_l_xs margin_b_zero"/>
             </b-button>

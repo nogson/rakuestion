@@ -40,7 +40,7 @@
 
 <script>
 
-  import Question from "../components/Question";
+  import Question from "~/components/Question";
 
   export default {
     layout: 'base-no-question-btn',
