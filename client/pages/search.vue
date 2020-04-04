@@ -44,7 +44,7 @@
     async asyncData({app, error, query}) {
       try {
         if (query.keyword) {
-          const res = await app.$axios.$get('api/questions/search', {
+          const res = await app.$axios.$get('/api/questions/search', {
             params: {
               offset: 0,
               limit: 5,
@@ -53,7 +53,7 @@
           })
           return {questions: res.data.questions, maxCount: res.data.max_count, keyword: res.data.keyword}
         } else if (query.tag) {
-          const res = await app.$axios.$get('api/questions/same_tag', {
+          const res = await app.$axios.$get('/api/questions/same_tag', {
             params: {
               offset: 0,
               limit: 5,
@@ -87,7 +87,7 @@
           params = {offset: this.currentPage * this.limit, limit: this.limit, tag: this.$route.query.tag}
         }
 
-        const res = await this.$axios.$get('api/questions/search', {params: params})
+        const res = await this.$axios.$get('/api/questions/search', {params: params})
         this.questions = this.questions.concat(res.data.questions)
         this.loading = false
       }
@@ -95,7 +95,7 @@
     watch: {
       '$route'(to) {
         this.currentPage = 0
-        this.$axios.$get('api/questions/search', {params: {keyword: to.query.keyword}}).then(res => {
+        this.$axios.$get('/api/questions/search', {params: {keyword: to.query.keyword}}).then(res => {
           this.questions = res.data.questions
         })
       }
