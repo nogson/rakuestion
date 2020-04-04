@@ -57,7 +57,7 @@
   }
 
   .search {
-    width: 200px;
+    width: 150px;
   }
 
   .search_btn {

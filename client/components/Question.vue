@@ -63,6 +63,7 @@
 
 <style scoped lang="scss">
   .question {
+    width: 100%;
     .question_avatar {
       width: $avatar-size;
       margin-right: $size-xl;
@@ -70,7 +71,6 @@
 
     .question_balloon_wrap {
       width: 100%;
-      padding-right: $avatar-size + $size-xl;
       box-sizing: border-box;
     }
 
@@ -124,6 +124,15 @@
 
       .answer_btn {
         margin-right: 0;
+        @media screen and (max-width:480px) {
+          .btn{
+            min-width: 30px;
+
+          }
+          span{
+            display: none;
+          }
+        }
       }
     }
 
