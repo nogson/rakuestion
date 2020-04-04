@@ -1,7 +1,7 @@
+const redirectSSL = require('redirect-ssl')
+
 const env = process.env.NODE_ENV || 'development';
 const API_URL = env === 'production' ? 'https://raquestion.herokuapp.com' : 'http://localhost'
-console.log('-----------',API_URL)
-
 
 export default {
   mode: 'universal',
@@ -56,7 +56,7 @@ export default {
   ],
   serverMiddleware: [
     // Will register redirect-ssl npm package
-    'redirect-ssl'
+    redirectSSL.create({ redirectHost: 'https://raquestion.herokuapp.com' })
   ],
   /*
   ** Build configuration
