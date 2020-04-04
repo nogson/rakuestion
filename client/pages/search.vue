@@ -41,15 +41,22 @@
         limit: 5
       }
     },
-    async asyncData({$axios, query}) {
-      if (query.keyword) {
-        const res = await $axios.$get('api/questions/search', {params: {offset: 0, limit: 5, keyword: query.keyword}})
-        return {questions: res.data.questions, maxCount: res.data.max_count, keyword: res.data.keyword}
-      } else if (query.tag) {
-        const res = await $axios.$get('api/questions/same_tag', {params: {offset: 0, limit: 5, tag: query.tag}})
-        return {questions: res.data.questions, maxCount: res.data.max_count, tags: res.data.tags}
+    async asyncData({app,error}) {
+      try {
+        if (query.keyword) {
+          const res = await app.$axios.$get('api/questions/search', {params: {offset: 0, limit: 5, keyword: query.keyword}})
+          return {questions: res.data.questions, maxCount: res.data.max_count, keyword: res.data.keyword}
+        } else if (query.tag) {
+          const res = await app.$axios.$get('api/questions/same_tag', {params: {offset: 0, limit: 5, tag: query.tag}})
+          return {questions: res.data.questions, maxCount: res.data.max_count, tags: res.data.tags}
+        }
+      }catch(err){
+        console.log(err)
+        // error({
+        //   statusCode: err.response.status,
+        //   message: err.response.data.message,
+        // });
       }
-
     },
     methods: {
       async getQuestions() {

@@ -57,22 +57,21 @@
         closed:false
       }
     },
-    // async asyncData({route, $axios}) {
-    //   const answers = await $axios.$get(`/api/question/${route.query.id}/answers`)
-    //   const question = await $axios.$get(`/api/question/${route.query.id}`)
-    //
-    //   return {
-    //     answers: answers.data.answers,
-    //     question: question.data.question
-    //   }
-    // },
-    async created(){
-      const answers = await this.$axios.$get(`/api/question/${this.$route.query.id}/answers`)
-      const question = await this.$axios.$get(`/api/question/${this.$route.query.id}`)
-
-      this.answers = answers.data.answers
-      this.question = question.data.question
-
+    async asyncData({app,error,route}) {
+      try {
+        const answers = await app.$axios.$get(`/api/question/${route.query.id}/answers`)
+        const question = await app.$axios.$get(`/api/question/${route.query.id}`)
+        return {
+          answers: answers.data.answers,
+          question: question.data.question
+        }
+      }catch(err){
+        console.log('err',err)
+        // error({
+        //   statusCode: err.response.status,
+        //   message: err.response.data.message,
+        // });
+      }
     },
     methods: {
       onSubmit() {

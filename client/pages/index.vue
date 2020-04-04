@@ -18,7 +18,7 @@
   import Question from '~/components/Question.vue'
   import Avatar from "~/components/Avatar"
   import ScrollBox from "~/components/ScrollBox"
-  import Spinner from "../components/Spinner";
+  import Spinner from "~/components/Spinner"
 
   export default {
     layout: 'base',
@@ -37,9 +37,17 @@
         limit:5
       }
     },
-    async asyncData({$axios}) {
-      const res = await $axios.$get('api/questions', {params: {offset: 0, limit: 5}})
-      return {questions: res.data.questions, maxCount: res.data.max_count}
+    async asyncData({app,error}) {
+      try {
+        const res = await app.$axios.$get('api/questions', {params: {offset: 0, limit: 5}})
+        return {questions: res.data.questions, maxCount: res.data.max_count}
+      }catch(err){
+        console.log(err)
+        // error({
+        //   statusCode: err.response.status,
+        //   message: err.response.data.message,
+        // });
+      }
     },
     methods: {
       async getQuestions() {
@@ -49,7 +57,7 @@
 
         this.loading = true
         this.currentPage++
-        const res = await this.$axios.$get('api/questions',{params: {offset: this.currentPage * this.limit, limit: this.limit}})
+        const res = await this.$axios.$get('/api/questions',{params: {offset: this.currentPage * this.limit, limit: this.limit}})
         this.questions = this.questions.concat(res.data.questions)
         this.loading = false
       }
