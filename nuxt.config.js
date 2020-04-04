@@ -53,7 +53,10 @@ export default {
     '@nuxtjs/style-resources',
     ['cookie-universal-nuxt', {parseJSON: false}],
     ['@nuxtjs/moment', ['ja']]
-    // 'nuxt-fontawesome'
+  ],
+  serverMiddleware: [
+    // Will register redirect-ssl npm package
+    'redirect-ssl'
   ],
   /*
   ** Build configuration

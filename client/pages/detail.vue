@@ -1,42 +1,42 @@
 <template>
-  <!--  <div class="detail">-->
-  <!--    <div class="question">-->
-  <!--      <question :data="question"/>-->
-  <!--    </div>-->
-  <!--    <div class="answer">-->
-  <!--      <answer v-for="answer in answers" :index="answer.id" :data.sync="answer"/>-->
-  <!--    </div>-->
-  <!--    <div class="answer_create_box" :class="{closed:closed === true}">-->
-  <!--        <button class="toggle_btn" @click="toggleAnswerBox">-->
-  <!--          <b-icon :icon="toggleIcon" class="h5 icon margin_r_xs margin_b_zero"/>-->
-  <!--        </button>-->
-  <!--        <h2 class="ttl_2 l_flex">-->
-  <!--          <b-icon icon="chat-fill" variant="primary" class="h5 icon margin_b_zero margin_r_xs" />-->
-  <!--          回答を入力してね-->
-  <!--        </h2>-->
-  <!--      <b-form @submit.prevent="onSubmit">-->
-  <!--      <b-form-group-->
-  <!--                id="input-group-1"-->
-  <!--                label-for="input-1"-->
-  <!--        >-->
-  <!--          <b-form-textarea-->
-  <!--                  v-model="form.answer"-->
-  <!--                  placeholder="回答を入力"-->
-  <!--                  rows="3"-->
-  <!--                  max-rows="6"-->
-  <!--          ></b-form-textarea>-->
-  <!--        </b-form-group>-->
-  <!--        <div class="l_flex margin_t_l">-->
-  <!--          <b-button to="/" variant="outline-primary">-->
-  <!--            <b-icon icon="chevron-left" class="h5 icon margin_r_xs margin_b_zero"/>-->
-  <!--            戻る-->
-  <!--          </b-button>-->
-  <!--          <b-button type="submit" class="margin_l_auto" variant="primary">登録-->
-  <!--          </b-button>-->
-  <!--        </div>-->
-  <!--      </b-form>-->
-  <!--    </div>-->
-  <!--  </div>-->
+    <div class="detail">
+      <div class="question">
+        <question :data="question"/>
+      </div>
+      <div class="answer">
+        <answer v-for="answer in answers" :index="answer.id" :data.sync="answer"/>
+      </div>
+      <div class="answer_create_box" :class="{closed:closed === true}">
+          <button class="toggle_btn" @click="toggleAnswerBox">
+            <b-icon :icon="toggleIcon" class="h5 icon margin_r_xs margin_b_zero"/>
+          </button>
+          <h2 class="ttl_2 l_flex">
+            <b-icon icon="chat-fill" variant="primary" class="h5 icon margin_b_zero margin_r_xs" />
+            回答を入力してね
+          </h2>
+        <b-form @submit.prevent="onSubmit">
+        <b-form-group
+                  id="input-group-1"
+                  label-for="input-1"
+          >
+            <b-form-textarea
+                    v-model="form.answer"
+                    placeholder="回答を入力"
+                    rows="3"
+                    max-rows="6"
+            ></b-form-textarea>
+          </b-form-group>
+          <div class="l_flex margin_t_l">
+            <b-button to="/" variant="outline-primary">
+              <b-icon icon="chevron-left" class="h5 icon margin_r_xs margin_b_zero"/>
+              戻る
+            </b-button>
+            <b-button type="submit" class="margin_l_auto" variant="primary">登録
+            </b-button>
+          </div>
+        </b-form>
+      </div>
+    </div>
 </template>
 
 <script>
