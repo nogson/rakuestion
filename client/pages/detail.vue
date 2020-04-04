@@ -1,7 +1,7 @@
 <template>
     <div class="detail">
       <div class="question">
-        <question :data="question"/>
+        <question v-if="question" :data="question"/>
       </div>
       <div class="answer">
         <answer v-for="answer in answers" :index="answer.id" :data.sync="answer"/>

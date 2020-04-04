@@ -1,5 +1,5 @@
 <template>
-  <h1 class="logo"><img to="/" src="~/assets/images/logo.png" /></h1>
+  <h1 class="logo"><a href="/"><img src="~/assets/images/logo.png" /></a></h1>
 </template>
 <script>
   export default{

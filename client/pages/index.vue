@@ -39,7 +39,7 @@
     },
     async asyncData({app,error}) {
       try {
-        const res = await app.$axios.$get('api/questions', {params: {offset: 0, limit: 5}})
+        const res = await app.$axios.$get('/api/questions', {params: {offset: 0, limit: 5}})
         return {questions: res.data.questions, maxCount: res.data.max_count}
       }catch(err){
         console.log(err)

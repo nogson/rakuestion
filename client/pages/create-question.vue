@@ -43,7 +43,7 @@
   import Question from "~/components/Question";
 
   export default {
-    layout: 'base-no-question-btn',
+    layout: 'base',
     components: {Question},
     data() {
       return {

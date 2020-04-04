@@ -1,5 +1,5 @@
 <template>
-  <img class="avatar" :class="{left:direction === 'left'}" :style="style" :src="img"/>
+  <img v-if="type" class="avatar" :class="{left:direction === 'left'}" :style="style" :src="img"/>
 </template>
 
 <script>
@@ -12,7 +12,7 @@
       },
       type: {
         type: Number,
-        default: 1
+        default: null
       },
       width: {
         type: String,
