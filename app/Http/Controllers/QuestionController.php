@@ -92,7 +92,7 @@ class QuestionController extends Controller
 
             foreach ($q as $qValue) {
                 if (isset($qValue->tags)) {
-                    $value->tags = explode(',', $value->tags);
+                    $qValue->tags = explode(',', $qValue->tags);
                 }
                 $qValue->answers = $qValue->answers;
             }
