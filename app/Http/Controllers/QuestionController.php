@@ -48,7 +48,7 @@ class QuestionController extends Controller
 
         $data = [
             'question' => $request->question,
-            'tags' => isset($value->tags) ? implode(',', $request->tags) : null,
+            'tags' => isset($request->tags) ? implode(',', $request->tags) : null,
             'avatar' => $request->avatar
         ];
 
