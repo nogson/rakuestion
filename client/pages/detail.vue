@@ -57,10 +57,10 @@
         closed:false
       }
     },
-    async asyncData({app,error,route}) {
+    async asyncData({app,error,query}) {
       try {
-        const answers = await app.$axios.$get(`/api/question/${route.query.id}/answers`)
-        const question = await app.$axios.$get(`/api/question/${route.query.id}`)
+        const answers = await app.$axios.$get(`/api/question/${query.id}/answers`)
+        const question = await app.$axios.$get(`/api/question/${query.id}`)
         return {
           answers: answers.data.answers,
           question: question.data.question
