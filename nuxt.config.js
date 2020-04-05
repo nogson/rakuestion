@@ -52,7 +52,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     ['cookie-universal-nuxt', {parseJSON: false}],
-    ['@nuxtjs/moment', ['ja']]
+    ['@nuxtjs/moment', ['ja']],
+    ['nuxt-webfontloader']
   ],
   serverMiddleware: [
     // Will register redirect-ssl npm package
@@ -83,4 +84,9 @@ export default {
   bootstrapVue: {
     icons: true // Install the IconsPlugin (in addition to BootStrapVue plugin
   }
+  // webfontloader: {
+  //   google: {
+  //     families: ['Hannari']
+  //   }
+  // }
 }

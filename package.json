@@ -22,6 +22,7 @@
         "moment": "^2.24.0",
         "nuxt": "^2.0.0",
         "nuxt-fontawesome": "^0.4.0",
+        "nuxt-webfontloader": "^1.1.0",
         "redirect-ssl": "^1.4.1",
         "vue": "^2.6.11",
         "vue-chartjs": "^3.5.0",
