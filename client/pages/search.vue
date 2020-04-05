@@ -3,7 +3,7 @@
     <div>
       <h1 v-if="keyword" class="ttl_1">検索条件　{{keyword}}</h1>
       <h1 v-else-if="tags" class="ttl_1">検索条件　<span v-for="(tag,index) in tags" :index="index">#{{tag}}</span></h1>
-      <article v-for="question in questions" :index="question.id">
+      <article v-for="question in questions.data" :index="question.id">
         <question :useLinkBtn="true" :data="question" :answer-count="question.answers.length"/>
         <div class="avatars">
         <span class="avatar" v-for="answer in question.answers" :index="answer.id">
